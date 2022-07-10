@@ -77,41 +77,39 @@ print(issubclass(Student, object))
 print(issubclass(Marks, object)) 
 
 #Q.8
-class py_solution:
- def threeSum(self, nums):
-        nums, result, i = sorted(nums), [], 0
-        while i < len(nums) - 2:
-            j, k = i + 1, len(nums) - 1
-            while j < k:
-                if nums[i] + nums[j] + nums[k] < 0:
-                    j += 1
-                elif nums[i] + nums[j] + nums[k] > 0:
-                    k -= 1
-                else:
-                    result.append([nums[i], nums[j], nums[k]])
-                    j, k = j + 1, k - 1
-                    while j < k and nums[j] == nums[j - 1]:
-                        j += 1
-                    while j < k and nums[k] == nums[k + 1]:
-                        k -= 1
-            i += 1
-            while i < len(nums) - 2 and nums[i] == nums[i - 1]:
-                i += 1
-        return result
+def findTriplets(arr, n):
 
-print(py_solution().threeSum([-25, -10, -7, -3, 2, 4, 8, 10]))
+	found = False
+	for i in range(0, n-2):
+	
+		for j in range(i+1, n-1):
+		
+			for k in range(j+1, n):
+			
+				if (arr[i] + arr[j] + arr[k] == 0):
+					print(arr[i], arr[j], arr[k])
+					found = True
+	if found == False:
+		print("No triplets exist")
+lst = []
+n = int(input("Enter number of elements : "))
+
+for i in range(0, n):
+	ele = int(input())
+	lst.append(ele) 
+print(findTriplets(lst,n))
 
 #Q.9
-class py_solution:
-   def is_valid_parenthese(self, str1):
-        stack, pchar = [], {"(": ")", "{": "}", "[": "]"}
-        for parenthese in str1:
-            if parenthese in pchar:
-                stack.append(parenthese)
-            elif len(stack) == 0 or pchar[stack.pop()] != parenthese:
-                return False
-        return len(stack) == 0
+class parantheses:
+    def find(str):
+        a= ['()', '{}', '[]'] 
+        while any(i in str for i in a):
+            for j in a:
+                str = str.replace(j, '') 
+        return not str 
 
-print(py_solution().is_valid_parenthese("(){}[]"))
-print(py_solution().is_valid_parenthese("()[{)}"))
-print(py_solution().is_valid_parenthese("()"))
+s = input("Enter the sequence of parantheses : ")
+if parantheses.find(s):
+    print(s,"-","is balanced")
+else:
+    print(s,"-","is unbalanced")
